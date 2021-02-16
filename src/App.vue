@@ -10,7 +10,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import UPDATE_DICTIONARY_FROM_FILE from "@/store/dictionary.js";
+import { UPDATE_DICTIONARY_FROM_FILE } from "@/store/dictionary.js";
 import { UPDATE_PRODUCTS_FROM_FILE, START_AUTO_UPDATE } from "@/store/products.js";
 
 export default {

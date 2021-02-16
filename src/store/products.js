@@ -1,3 +1,5 @@
+import { UPDATE_EXCHANGE_RATE_RANDOM}  from "@/store/exchangeRates";
+
 export const UPDATE_PRODUCTS_FROM_FILE = "UPDATE_PRODUCTS_FROM_FILE";
 export const START_AUTO_UPDATE = "START_AUTO_UPDATE";
 export const STOP_AUTO_UPDATE = "STOP_AUTO_UPDATE";
@@ -12,7 +14,8 @@ const products = {
   actions: {
     [START_AUTO_UPDATE] ({commit}) {
        const intervalId = setInterval(() => {
-          commit(UPDATE_PRODUCTS_FROM_FILE);
+         commit(UPDATE_PRODUCTS_FROM_FILE);
+         commit(UPDATE_EXCHANGE_RATE_RANDOM);
        }, 15000);
        commit(SET_INTERVAL_ID, intervalId);
     }
