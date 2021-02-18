@@ -9,61 +9,21 @@
 </template>
 
 <script>
-  import ProductCategory from "@/components/ProductCategory";
+  import ProductCategory from '@/components/ProductCategory';
 
   export default {
-    name: "Showcase",
+    name: 'Showcase',
 
     components: {
       ProductCategory
     },
 
-    methods: {
-      parseData(data) {
-        const groupIDs = [];
-        const groups = [];
-
-        data.forEach(element => {
-          const elementGroupId = element.G;
-
-          if (!groupIDs.includes(elementGroupId)) {
-            groupIDs.push(elementGroupId);
-
-            const group = {
-              groupName: this.dictionaryNames[elementGroupId].G,
-              groupId: elementGroupId,
-              groupProducts: []
-            };
-
-            const groupData = data.filter(element => element.G === elementGroupId);
-            groupData.forEach(element => {
-              group.groupProducts.push({
-                costUSD: element.C,
-                productId: element.T,
-                left: element.P,
-                name: this.dictionaryNames[elementGroupId].B[element.T].N
-              })
-            });
-
-            groups.push(group);
-          }
-        });
-
-        return groups;
-      }
-    },
-
     computed: {
-      dictionaryNames() {
-        return this.$store.state.dictionary.names;
-      },
-
       products() {
-        const goods = this.$store.state.products.data.Value.Goods;
-        return this.parseData(goods);
+        return this.$store.state.products.products;
       }
     }
-  }
+  };
 </script>
 
 <style scoped>
@@ -75,5 +35,4 @@
     padding: 10px;
     width: 60%;
   }
-
 </style>

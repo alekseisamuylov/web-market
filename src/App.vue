@@ -8,17 +8,12 @@
 
 <script>
   import Showcase from '@/components/Showcase';
-  import { UPDATE_DICTIONARY_FROM_FILE } from '@/store/dictionary.js';
-  import {
-    UPDATE_PRODUCTS_FROM_FILE,
-    START_AUTO_UPDATE
-  } from '@/store/products.js';
+  import { ON_LOAD, START_AUTO_UPDATE } from '@/store/fetchData';
 
   export default {
     name: 'App',
     created() {
-      this.$store.commit(UPDATE_DICTIONARY_FROM_FILE);
-      this.$store.commit(UPDATE_PRODUCTS_FROM_FILE);
+      this.$store.dispatch(ON_LOAD);
       this.$store.dispatch(START_AUTO_UPDATE);
     },
 
