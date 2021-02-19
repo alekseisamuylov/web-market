@@ -11,7 +11,8 @@ export const SET_INTERVAL_ID = 'SET_INTERVAL_ID';
 
 const products = {
   state: {
-    intervalId: null
+    intervalId: null,
+    isAutoUpdateEnabled: true
   },
 
   actions: {
@@ -36,15 +37,25 @@ const products = {
         commit(UPDATE_EXCHANGE_RATE_RANDOM);
       }, 15000);
       commit(SET_INTERVAL_ID, intervalId);
+    },
+
+    ['CHANGE_AUTO_UPDATE_STATUS']({ commit, dispatch }, status) {
+      if (status) {
+        dispatch(START_AUTO_UPDATE);
+      } else {
+        commit(STOP_AUTO_UPDATE);
+      }
     }
   },
 
   mutations: {
     [SET_INTERVAL_ID](state, intervalId) {
+      state.isAutoUpdateEnabled = true;
       state.intervalId = intervalId;
     },
 
     [STOP_AUTO_UPDATE](state) {
+      state.isAutoUpdateEnabled = false;
       clearInterval(state.intervalId);
     }
   }

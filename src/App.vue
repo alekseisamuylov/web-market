@@ -9,7 +9,7 @@
 
 <script>
   import Showcase from '@/components/Showcase';
-  import SidePanel from "@/components/SidePanel";
+  import SidePanel from '@/components/SidePanel';
   import { ON_LOAD, START_AUTO_UPDATE } from '@/store/fetchData';
 
   export default {
