@@ -9,6 +9,7 @@
         v-for="product in productCategory.groupProducts"
         :key="'product-' + product.productId"
         :product="product"
+        @add-to-cart="addToCart"
       />
     </div>
   </div>
@@ -35,6 +36,11 @@
     methods: {
       onHeaderClick() {
         this.isOpen = !this.isOpen;
+      },
+
+      addToCart(product) {
+        product.categoryId = this.productCategory.groupId;
+        this.$store.commit('ADD_TO_CART', product);
       }
     },
 

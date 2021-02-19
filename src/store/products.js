@@ -1,7 +1,3 @@
-export const UPDATE_PRODUCTS_FROM_FILE = 'UPDATE_PRODUCTS_FROM_FILE';
-export const START_AUTO_UPDATE = 'START_AUTO_UPDATE';
-export const STOP_AUTO_UPDATE = 'STOP_AUTO_UPDATE';
-export const SET_INTERVAL_ID = 'SET_INTERVAL_ID';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 const products = {
@@ -11,8 +7,22 @@ const products = {
 
   mutations: {
     [SET_PRODUCTS](state, products) {
-      console.log(products);
       state.products = products;
+    }
+  },
+
+  getters: {
+    getProducts: state => cart => {
+      const productsInCart = [];
+      cart.forEach(productInfo => {
+        const categoryProducts = state.products.find(category => category.groupId === productInfo.categoryId);
+        const product = categoryProducts.groupProducts.find(product => product.productId === productInfo.productId);
+        product.count = productInfo.count;
+        product.isCorrectCount = productInfo.isCorrectCount;
+        productsInCart.push(product);
+      });
+
+      return productsInCart;
     }
   }
 };

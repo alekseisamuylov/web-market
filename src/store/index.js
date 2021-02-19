@@ -4,6 +4,7 @@ import dictionary from "./dictionary";
 import products from "./products";
 import exchangeRates from "./exchangeRates";
 import fetchData from "./fetchData"
+import cart from  "./cart"
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     dictionary,
     products,
     exchangeRates,
-    fetchData
+    fetchData,
+    cart
   }
 });

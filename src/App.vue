@@ -2,12 +2,14 @@
   <div id="app">
     <div class="main">
       <showcase />
+      <side-panel />
     </div>
   </div>
 </template>
 
 <script>
   import Showcase from '@/components/Showcase';
+  import SidePanel from "@/components/SidePanel";
   import { ON_LOAD, START_AUTO_UPDATE } from '@/store/fetchData';
 
   export default {
@@ -18,7 +20,8 @@
     },
 
     components: {
-      Showcase
+      Showcase,
+      SidePanel
     }
   };
 </script>
@@ -37,6 +40,7 @@
 <style scoped>
   .main {
     display: flex;
+    align-items: flex-start;
     justify-content: center;
   }
 </style>

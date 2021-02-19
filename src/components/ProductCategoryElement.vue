@@ -4,7 +4,12 @@
     <div class="cost">{{ costRUB }} р</div>
     <div class="buy">
       <div class="left">{{ product.left }} шт</div>
-      <div class="button-buy">В корзину</div>
+      <div
+        :class="[{ 'disabled': isAddedInCart }, 'button-buy']"
+        @click="addToCart"
+      >
+        В корзину
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +20,17 @@
 
     props: ['product'],
 
+    methods: {
+      addToCart() {
+        const product = {
+          productId: this.product.productId,
+          count: 1,
+          isCorrectCount: true
+        };
+        this.$emit('add-to-cart', product);
+      }
+    },
+
     computed: {
       usdExchangeRate() {
         return this.$store.state.exchangeRates.usdToRub;
@@ -22,6 +38,10 @@
 
       costRUB() {
         return (this.product.costUSD * this.usdExchangeRate).toFixed(2);
+      },
+
+      isAddedInCart() {
+        return this.$store.getters.isInCart(this.product.productId);
       }
     }
   };
@@ -74,5 +94,10 @@
   }
   .button-buy:active {
     background-color: #2c3e50;
+  }
+
+  .disabled {
+    background-color: #bdbdbd;
+    pointer-events: none;
   }
 </style>
