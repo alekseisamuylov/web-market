@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <page-header />
     <div class="main">
       <showcase />
       <side-panel />
@@ -10,6 +11,7 @@
 <script>
   import Showcase from '@/components/Showcase';
   import SidePanel from '@/components/SidePanel';
+  import PageHeader from '@/components/PageHeader';
   import { ON_LOAD, START_AUTO_UPDATE } from '@/store/fetchData';
 
   export default {
@@ -20,6 +22,7 @@
     },
 
     components: {
+      PageHeader,
       Showcase,
       SidePanel
     }
@@ -33,7 +36,6 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 </style>
 
